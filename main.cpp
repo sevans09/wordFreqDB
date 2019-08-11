@@ -58,11 +58,13 @@ int main(int argc, char* argv[]) {
 				int hashNum = hash.hashStr(text_word);
 			}
 			else if (command == GET) {
+				cout << "in get" << endl;
 				string instr;
 				getline(cin, instr);
 				stringstream iss(instr); 
 				string text_word;
 				iss >> text_word;
+				cout << "text word is " << text_word;
 
 				hash.search(text_word);
 			}

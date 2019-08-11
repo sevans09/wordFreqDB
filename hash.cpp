@@ -58,12 +58,29 @@ void Hash::search(string word)
 	int bucketNum = getBucket(keyToSearch, word);
 	int len = hash[keyToSearch].size();
 
-	for (int i = 0; i < len; i++){
-		//if (keyToSearch == containedKey){
-		 	cout << hash[keyToSearch].at(i).word << ": ";
-		 	cout << hash[keyToSearch].at(i).frequency << endl; 
-		//}
+	if (bucketNum == -1) {
+		cout << "Word not found." << endl;
+		return;
 	}
+
+	cout << hash[keyToSearch][bucketNum].word << ": ";
+ 	cout << hash[keyToSearch][bucketNum].frequency << endl; 
+
+	// cout << "before if" << endl;
+	// if (len == 0 && !(hash[keyToSearch].empty())) {
+	// 	cout << "before check" << endl;
+	// 	if (hash[keyToSearch][0].word == word) {
+
+	// 	}
+	// }
+	// cout << "before for" << endl;
+	// for (int i = 0; i < len; i++){
+	// 	cout << "Loopinfg thru " << endl;
+	// 	//if (keyToSearch == containedKey){
+	// 	 	cout << hash[keyToSearch].at(i).word << ": ";
+	// 	 	cout << hash[keyToSearch].at(i).frequency << endl; 
+	// 	//}
+	// }
 	return;
 }
 
@@ -85,8 +102,14 @@ int Hash::getBucket(int hashNum, string word)
 
 void Hash::remove(int hashNum, string Word) 
 {
-	// iterate thropguh to find then add that var to begin
-	// myvector.erase (myvector.begin()+5);
+	int bucket = getBucket(hashNum, Word);
+
+	if (bucket == -1) {
+		cout << "Word not found." << endl;
+		return;
+	}
+
+	hash[hashNum].erase(hash[hashNum].begin() + bucket);
 }
 
 // Function: Expand

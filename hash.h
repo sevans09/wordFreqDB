@@ -3,6 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+
+using namespace std;
 
 // struct of entry nodes to be inserted in the hash table
 struct Entry {
@@ -17,20 +20,16 @@ public:
 	// function to hash words
 	int hashStr(string instr);
 	// function to search for queries
-	void search(string word, vector<Entry> &filepaths);
+	void search(string word);
 	// expand function to expand hash table
 	void expand();
-	// function to print each component of the structure
-	void printEntry(vector<Entry> &filepaths, int i);
 	// function to insert in the hash table from the buffer vector
-	void insertInHash(Entry entry, int hashNum, vector<Entry> &filepaths);
+	void insertInHash(Entry entry, int hashNum);
 private:
-	// function to get the bucket of the collision
+	// function to get the index of the collision bucket
 	int getBucket(int hashNum, string word);
-	// vector of vector of linked list of entries for the hash tables
-	vector<vector<list<Entry> > > hash;
-	// vector of a string of sentences to speed up time
-	vector<string> sentences;
+ 	// vector of vector of linked list of entries for the hash tables
+	vector<vector<Entry> > hash;
 	// load factor to use for the expand function
 	int loadFactor;
 };

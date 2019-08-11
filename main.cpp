@@ -30,7 +30,7 @@ int main(int argc, char* argv[]) {
 		cout << "':g' gets from the database" << endl;
 		cout << "':q' quits." << endl;
 		cin >> command;
-		// take commands while command is not :q
+
 		while (command != QUIT) {
 			string instr;
 			if (command == PUT) {
@@ -42,11 +42,11 @@ int main(int argc, char* argv[]) {
 				int hashNum = hash.hashStr(text_word);
 				int freq;
 				iss >> freq;
-
 				// Insert each word into hash table with values
 				Entry entry;
 				entry.frequency = freq;
 				entry.word = text_word;
+
 				hash.insertInHash(entry, hashNum);
 			}
 			else if (command == REMOVE) {
@@ -56,15 +56,15 @@ int main(int argc, char* argv[]) {
 				string text_word;
 				iss >> text_word;
 				int hashNum = hash.hashStr(text_word);
+
+				hash.remove(hashNum, text_word);
 			}
 			else if (command == GET) {
-				cout << "in get" << endl;
 				string instr;
 				getline(cin, instr);
 				stringstream iss(instr); 
 				string text_word;
 				iss >> text_word;
-				cout << "text word is " << text_word;
 
 				hash.search(text_word);
 			}

@@ -83,6 +83,11 @@ int Hash::getBucket(int hashNum, string word)
 	return -1;
 }	
 
+void Hash::remove(int hashNum, string Word) 
+{
+	// iterate thropguh to find then add that var to begin
+	// myvector.erase (myvector.begin()+5);
+}
 
 // Function: Expand
 // Parameters: string of word queried

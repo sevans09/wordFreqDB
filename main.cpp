@@ -39,13 +39,9 @@ int main(int argc, char* argv[]) {
 				stringstream iss(instr); 
 				string text_word;
 				iss >> text_word;
-				cerr << " text word is " << text_word << endl;
 				int hashNum = hash.hashStr(text_word);
 				int freq;
-
 				iss >> freq;
-				cerr << " text freq is " << freq << endl;
-
 
 				// Insert each word into hash table with values
 				Entry entry;
@@ -54,10 +50,21 @@ int main(int argc, char* argv[]) {
 				hash.insertInHash(entry, hashNum);
 			}
 			else if (command == REMOVE) {
-				cout << "remove" << endl;
+				string instr;
+				getline(cin, instr);
+				stringstream iss(instr); 
+				string text_word;
+				iss >> text_word;
+				int hashNum = hash.hashStr(text_word);
 			}
 			else if (command == GET) {
-				cout << "get" << endl;
+				string instr;
+				getline(cin, instr);
+				stringstream iss(instr); 
+				string text_word;
+				iss >> text_word;
+
+				hash.search(text_word);
 			}
 			else if (command == QUIT) {
 				return 0;

@@ -12,6 +12,6 @@ DEPS = hash.h
 
 wordDB: hash.o main.o 
 	$(CC) -o wordDB hash.o main.o 
-  
+
 clean:
 	rm -f *.o core* *~ wordDB

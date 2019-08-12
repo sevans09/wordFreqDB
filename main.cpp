@@ -10,7 +10,7 @@ const string PUT = ":p";
 const string REMOVE = ":r";
 const string GET = ":g";
 
-void process_file(ifstream &infile, Hash hash, string filename);
+Hash process_file(ifstream &infile, Hash hash, string filename);
 
 int main(int argc, char* argv[]) {
 	if(argc != 2){
@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
 		string filename = argv[1];
 		ifstream infile;
 		Hash hash;
-		process_file(infile, hash, filename);
+		hash = process_file(infile, hash, filename);
 
 		string command;
 		cout << "Welcome to Word Frequency Database." << endl;
@@ -32,7 +32,7 @@ int main(int argc, char* argv[]) {
 		cin >> command;
 
 		while (command != QUIT) {
-			string instr;
+
 			if (command == PUT) {
 				string instr;
 				getline(cin, instr);
@@ -46,7 +46,6 @@ int main(int argc, char* argv[]) {
 				Entry entry;
 				entry.frequency = freq;
 				entry.word = text_word;
-
 				hash.insertInHash(entry, hashNum);
 			}
 			else if (command == REMOVE) {
@@ -81,11 +80,11 @@ int main(int argc, char* argv[]) {
 }
 
 
-void process_file(ifstream &infile, Hash hash, string filename) {
+Hash process_file(ifstream &infile, Hash hash, string filename) {
 	infile.open(filename.c_str());
 	if (!infile.is_open()) {
 		cout << "Unable to open file " << filename << "\n";
-		return;
+		return hash;
 	}
 	else{
 		while (!infile.eof()){
@@ -106,6 +105,6 @@ void process_file(ifstream &infile, Hash hash, string filename) {
 		}
 	}
 	infile.close();
-	return;
+	return hash;
 }
 
